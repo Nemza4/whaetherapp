@@ -16,19 +16,38 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HomePage {
   
-  whether;
-  location;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public data:DataProvider) {
-this.data.getRemoteData().subscribe(Data=>{
-  this.whether = data;
+  info;
+  infoList;
+  display = 0;
+  city: string;
 
-  console.log(this.whether);
-  this.location=this.whether.data;
-})
+  conditionCode;
+iconCode : string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,public data:DataProvider) {
+  
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
+  }
+
+  getResults(){
+    this.data.getData(this.city).subscribe(data=>{
+      this.info = data;
+    
+      console.log(this.info);
+      this.infoList=this.info.data;
+      this.display = 1;
+
+      this.iconCode = this.info.weather[0].icon;
+      this.conditionCode = "http://openweathermap.org/img/w/"+ this.iconCode +".png";
+    }) 
+  }
+  ref(){
+  this.display = 0;
+  this.city = null;
   }
 
 }

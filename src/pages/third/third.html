@@ -1,0 +1,137 @@
+<!--
+  Generated template for the ThirdPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<!-- <ion-header>
+    
+  <ion-navbar>
+      
+          <ion-item name="menu"></ion-item>
+        
+    <ion-title>third</ion-title>
+    
+<ion-searchbar placeholder="enter your city"  [(ngModel)]="city" name="search"  >
+</ion-searchbar>
+<ion-buttons end>    
+      <ion-icon name="options" ></ion-icon> 
+        
+      <ion-select >
+          <ion-option value = "Johannesburg">Johannesburg</ion-option>
+          <ion-option value = "Pretoria">Pretoria</ion-option> 
+          <ion-option value = "Thohoyandou">Thohoyandou</ion-option> 
+          <ion-option value = "Sibasa">Sibasa</ion-option> 
+          <ion-option value = "musina">Musina</ion-option> 
+        </ion-select>
+    
+  </ion-buttons>
+  <img class="bb" src={{conditionCode}}>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content >
+    <div class="ma">
+        <h1 style="text-align: center"> TODAY</h1>
+        <h1 style="text-align: center"> {{city}}</h1>
+     
+
+
+      <div style="text-align: center; bottom: 60%;" class="centered">
+
+          <p > {{(info?.main.temp-273.15).toFixed(2)}}°C</p>
+       
+       </div>
+
+       <div class="split left">
+          <h1 style="position: absolute; left: 0; bottom: 40%;height: 5%">Min Temp<br> {{(info?.main.temp_min-273.15).toFixed(2)}} °C </h1>
+         
+         </div>
+
+         <div class="split left">
+            <h1 style="position: absolute; right: 0; bottom: 40%; height: 5%">Max Temp<br>{{(info?.main.temp_max-273.15).toFixed(2)}} °C</h1>
+         
+        </div>
+
+
+        <div style="text-align: center; bottom: 60%;" class="centeredbuttom">
+
+            <p >iiioo {{info?.main.humidity}}°C</p>
+         
+         </div>
+      </div>
+</ion-content> -->
+<!--
+  Generated template for the SecondPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-title>Weather App</ion-title>
+
+  <ion-navbar>
+      
+      <ion-searchbar placeholder="enter your city"
+        [(ngModel)]="city" name="search"  
+       
+           
+        [showCancelButton]="shouldShowCancel"
+        (ionInput)="onInput()"
+      (ionCancel)="onCancel()">
+   
+        </ion-searchbar>
+<ion-item>
+          <ion-label>{{currentTemp}} to</ion-label>
+          <ion-select [(ngModel)]="tempChange" (ionChange)="temperatureChange($event)">
+            
+              <ion-option value="Celcius">Celcius</ion-option>
+              <ion-option value="Fahrenheit">Fahrenheit</ion-option>
+            </ion-select>
+
+          </ion-item>
+  </ion-navbar>
+  
+</ion-header>
+
+
+<ion-content >
+  
+   <div class="ma"> 
+
+      <ion-refresher (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
+  
+   
+
+    <img class="bb" src={{conditionCode}}>
+
+
+<h1 style="text-align: center"> TODAY</h1>
+<h1 style="text-align: center"> {{city}}</h1>
+
+
+<br>
+
+<div style="text-align: center; bottom: 80%;" class="centered">
+        <p class="ragraph">{{info?.name}} <img src="http://openweathermap.org/img/w/{{info?.weather[0].icon}}.png"> </p>
+        <p>{{weatherData?.weather[0].description }}</p>
+   <p > {{(temp)}}°C</p>
+
+</div>
+
+
+   <h1 style="position: absolute; left: 0; bottom: 40%;height: 5%">{{(weatherData?.main.temp_min-273.15).toFixed(0)}} °C </h1>
+  
+
+
+  
+    <h1 style="position: absolute; right: 0; bottom: 40%; height: 5%">{{(info?.main.temp_max-273.15).toFixed(0)}} °C</h1> 
+ 
+   </div>
+
+
+</ion-content>
